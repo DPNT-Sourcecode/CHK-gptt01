@@ -1,7 +1,5 @@
 package io.accelerate.solutions.CHK;
 
-import io.accelerate.runner.SolutionNotImplementedException;
-
 import java.util.HashMap;
 import java.util.Map;
 
@@ -20,6 +18,7 @@ public class CheckoutSolution {
     public Integer checkout(String skus) {
 
         // Validate SKUs
+        if (skus == null) return 0;
         skus = skus.toUpperCase();
         if (!isValidSKUs(skus)) return -1;
 
@@ -53,6 +52,3 @@ public class CheckoutSolution {
     }
 
 }
-
-
-
