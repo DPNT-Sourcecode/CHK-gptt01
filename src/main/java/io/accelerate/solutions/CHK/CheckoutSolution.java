@@ -9,7 +9,8 @@ public class CheckoutSolution {
             'A', 50,
             'B', 30,
             'C', 20,
-            'D', 15
+            'D', 15,
+            'E', 40
     );
 
     private static final Map<Character, Map<Integer, Integer>> OFFERS = Map.of(
@@ -17,9 +18,7 @@ public class CheckoutSolution {
             'B', Map.of(2, 45)
     );
 
-    // TODO: Not clear from requirements:
-    //      - Structure of the list (comma-separated? - assume one word with unsorted chars)
-    //      - Invalid characters (single characters that are not SKUs, spaces)
+
     public Integer checkout(String skus) {
 
         // Validate SKUs
@@ -64,9 +63,9 @@ public class CheckoutSolution {
 
             if (!OFFERS.containsKey(item.getKey())) continue; // No offer for item
 
-            int count = item.getValue();
+            OFFERS.get(item.getKey())
 
-            // TODO: If any more offers are added per item, ensure TreeMap used so offers are looped from high to low
+
             for (final Map.Entry<Integer, Integer> offer : OFFERS.get(item.getKey()).entrySet()) {
                 total += (count / offer.getKey()) * offer.getValue();
                 count = count % offer.getKey();

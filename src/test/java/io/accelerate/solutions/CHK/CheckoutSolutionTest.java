@@ -51,4 +51,14 @@ public class CheckoutSolutionTest {
         assertThat(checkout.checkout("AAAAAAAABBBBBCD"), equalTo(515));
     }
 
+    @Test
+    public void checkout_valid_multAOffer() {
+        assertThat(checkout.checkout("AAAAA AAAAA AAA AA "), equalTo(630));
+    }
+
+    @Test
+    public void checkout_valid_getBFree() {
+        assertThat(checkout.checkout("EEB"), equalTo(80));
+    }
+
 }
