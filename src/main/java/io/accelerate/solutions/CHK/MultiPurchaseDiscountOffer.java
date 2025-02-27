@@ -18,16 +18,18 @@ public class MultiPurchaseDiscountOffer implements Offer {
 
     @Override
     public int apply(final Map<Character, Integer> order) {
-        int startingCount = order.getOrDefault(sku, 0);
 
+        if (!order.containsKey(this.sku)) return 0;
+
+        int startingCount = order.get(this.sku);
         int totalCost = (startingCount / this.count) * this.cost;
-
         int newCount = startingCount % this.count;
 
-        order.put(sku, newCount);
+        order.put(this.sku, newCount);
 
         return totalCost;
     }
 
 }
+
 

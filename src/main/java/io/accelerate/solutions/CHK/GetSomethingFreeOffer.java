@@ -18,8 +18,13 @@ public class GetSomethingFreeOffer implements Offer {
 
     @Override
     public int apply(final Map<Character, Integer> order) {
-        order.put(freeSKU, Math.max(0, order.getOrDefault(freeSKU, 0) - order.getOrDefault(requiredSKU, 0) / amountNeeded));
+        if (!order.containsKey(this.freeSKU) || !order.containsKey(this.requiredSKU)) {
+            return 0;
+        }
+
+        order.put(this.freeSKU, Math.max(0, order.get(this.freeSKU) - order.get(this.requiredSKU) / this.amountNeeded));
         return 0;
     }
 
 }
+
