@@ -17,8 +17,8 @@ public class CheckoutSolutionTest {
     }
 
     @Test
-    public void checkout_invalid() {
-        assertThat(checkout.checkout("ABCDE"), equalTo(-1));
+    public void checkout_invalidSKU() {
+        assertThat(checkout.checkout("ABCDEF"), equalTo(-1));
     }
 
     @Test
@@ -52,13 +52,18 @@ public class CheckoutSolutionTest {
     }
 
     @Test
-    public void checkout_valid_multAOffer() {
-        assertThat(checkout.checkout("AAAAA AAAAA AAA AA "), equalTo(630));
+    public void checkout_valid_multiAOffer() {
+        assertThat(checkout.checkout("AAAAAAAAAAAAAA"), equalTo(580));
     }
 
     @Test
     public void checkout_valid_getBFree() {
         assertThat(checkout.checkout("EEB"), equalTo(80));
+    }
+
+    @Test
+    public void checkout_valid_multiEandB() {
+        assertThat(checkout.checkout("EEEEBBBBB"), equalTo(75));
     }
 
 }

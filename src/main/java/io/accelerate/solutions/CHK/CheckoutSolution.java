@@ -1,6 +1,7 @@
 package io.accelerate.solutions.CHK;
 
 import java.util.HashMap;
+import java.util.List;
 import java.util.Map;
 
 public class CheckoutSolution {
@@ -13,11 +14,15 @@ public class CheckoutSolution {
             'E', 40
     );
 
-    private static final Map<Character, Map<Integer, Integer>> OFFERS = Map.of(
-            'A', Map.of(3, 130),
-            'B', Map.of(2, 45)
+    private static final Map<Character, List<Offer>> OFFERS = Map.of(
+            'A', List.of(
+                    new MultiPurchaseDiscountOffer('A', 5, 200),
+                    new MultiPurchaseDiscountOffer('A', 3, 130)
+            ),
+            'B', List.of(
+                    new MultiPurchaseDiscountOffer('B', 2, 45)
+            )
     );
-
 
     public Integer checkout(String skus) {
 
@@ -63,16 +68,8 @@ public class CheckoutSolution {
 
             if (!OFFERS.containsKey(item.getKey())) continue; // No offer for item
 
-            OFFERS.get(item.getKey())
-
-
-            for (final Map.Entry<Integer, Integer> offer : OFFERS.get(item.getKey()).entrySet()) {
-                total += (count / offer.getKey()) * offer.getValue();
-                count = count % offer.getKey();
-            }
-
-            // Put the count of any items where no offer has been applied
-            order.put(item.getKey(), count);
+            // Apply all offers for that item and add to the total cost
+            total += OFFERS.get(item.getKey()).stream().mapToInt(offer -> offer.apply(order)).sum();
         }
 
         return total;
