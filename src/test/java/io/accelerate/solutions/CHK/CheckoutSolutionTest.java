@@ -63,7 +63,7 @@ public class CheckoutSolutionTest {
 
     @Test
     public void checkout_valid_multiEandB() {
-        assertThat(checkout.checkout("EEEEBBBBB"), equalTo(75));
+        assertThat(checkout.checkout("EEEEBBBBB"), equalTo(235));
     }
 
 }
