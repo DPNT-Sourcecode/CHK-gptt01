@@ -11,7 +11,8 @@ public class CheckoutSolution {
             'B', 30,
             'C', 20,
             'D', 15,
-            'E', 40
+            'E', 40,
+            'F', 10
     );
 
     private static final Map<Character, List<Offer>> OFFERS = Map.of(
@@ -25,6 +26,9 @@ public class CheckoutSolution {
                         return 0;
                     },
                     new MultiPurchaseDiscountOffer('B', 2, 45)
+            ),
+            'F', List.of(
+                    new MultiPurchaseDiscountOffer('F', 3, 20)
             )
     );
 
