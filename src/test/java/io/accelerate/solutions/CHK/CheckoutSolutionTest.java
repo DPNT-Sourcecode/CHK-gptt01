@@ -22,6 +22,11 @@ public class CheckoutSolutionTest {
     }
 
     @Test
+    public void checkout_invalid_lowercase() {
+        assertThat(checkout.checkout("AbCDE"), equalTo(-1));
+    }
+
+    @Test
     public void checkout_null() {
         assertThat(checkout.checkout(null), equalTo(0));
     }

@@ -24,7 +24,6 @@ public class CheckoutSolution {
 
         // Validate SKUs
         if (skus == null) return 0;
-        skus = skus.toUpperCase();
         if (!isValidSKUs(skus)) return -1;
 
         // Build a map of SKU to count - the 'order'
@@ -81,3 +80,4 @@ public class CheckoutSolution {
     }
 
 }
+
