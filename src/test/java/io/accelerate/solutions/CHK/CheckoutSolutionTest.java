@@ -43,8 +43,6 @@ public class CheckoutSolutionTest {
 
     @Test
     public void checkout_valid_overOffer() {
-        int y = (2*130) + (2*50) + (2*45) + 30 + 20 + 15;
-        System.out.println(y);
         assertThat(checkout.checkout("AAA AAA AA BB BB B CD"), equalTo(515));
     }
 
