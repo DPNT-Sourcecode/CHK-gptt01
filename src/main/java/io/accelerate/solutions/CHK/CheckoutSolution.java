@@ -1,5 +1,6 @@
 package io.accelerate.solutions.CHK;
 
+import java.util.ArrayList;
 import java.util.HashMap;
 import java.util.List;
 import java.util.Map;
@@ -36,43 +37,50 @@ public class CheckoutSolution {
                 PRICES.put('Z', 21);
     }
 
-    private static final Map<Character, List<Offer>> OFFERS = Map.of(
-            'A', List.of(
-                    new MultiPurchaseDiscountOffer('A', 5, 200),
-                    new MultiPurchaseDiscountOffer('A', 3, 130)
-            ),
-            'B', List.of(
-                    new GetSomethingFreeOffer('B', 'E', 2),
-                    new MultiPurchaseDiscountOffer('B', 2, 45)
-            ),
-            'F', List.of(
-                    new MultiPurchaseDiscountOffer('F', 3, 20)
-            ),
-            'H', List.of(
-                    new MultiPurchaseDiscountOffer('H', 10, 80),
-                    new MultiPurchaseDiscountOffer('H', 5, 45)
-            ),
-            'K', List.of(
-                    new MultiPurchaseDiscountOffer('K', 2, 120)
-            ),
-            'M', List.of(
-                    new GetSomethingFreeOffer('M', 'N', 3)
-            ),
-            'P', List.of(
-                    new MultiPurchaseDiscountOffer('P', 5, 200)
-            ),
-            'Q', List.of(
-                    new GetSomethingFreeOffer('Q', 'R', 3),
-                    new MultiPurchaseDiscountOffer('Q', 3, 80)
-            ),
-            'U', List.of(
-                    new MultiPurchaseDiscountOffer('U', 4, 120)
-            ),
-            'V', List.of(
-                    new MultiPurchaseDiscountOffer('V', 3, 130),
-                    new MultiPurchaseDiscountOffer('V', 2, 90)
-            )
-    );
+    private static final Map<Character, List<Offer>> OFFERS = new HashMap<>();
+    static {
+        // Anything for free should go first
+        OFFERS.computeIfAbsent('B', sku -> new ArrayList<>())
+                .add(new GetSomethingFreeOffer('B', 'E', 2));
+        OFFERS.computeIfAbsent('M', sku -> new ArrayList<>())
+                .add(new GetSomethingFreeOffer('M', 'N', 3));
+        OFFERS.computeIfAbsent('Q', sku -> new ArrayList<>())
+                .add(new GetSomethingFreeOffer('Q', 'R', 3));
+
+        // Multi Purchase Discount offers - ensure largest counts are first
+        OFFERS.computeIfAbsent('A', sku -> new ArrayList<>())
+                .add(new MultiPurchaseDiscountOffer('A', 5, 200));
+        OFFERS.computeIfAbsent('A', sku -> new ArrayList<>())
+                .add(new MultiPurchaseDiscountOffer('A', 3, 130));
+        OFFERS.computeIfAbsent('B', sku -> new ArrayList<>())
+                .add(new MultiPurchaseDiscountOffer('B', 2, 45));
+        OFFERS.computeIfAbsent('F', sku -> new ArrayList<>())
+                .add(new MultiPurchaseDiscountOffer('F', 3, 20));
+        OFFERS.computeIfAbsent('H', sku -> new ArrayList<>())
+                .add(new MultiPurchaseDiscountOffer('H', 10, 80));
+        OFFERS.computeIfAbsent('H', sku -> new ArrayList<>())
+                .add(new MultiPurchaseDiscountOffer('H', 5, 45));
+        OFFERS.computeIfAbsent('K', sku -> new ArrayList<>())
+                .add(new MultiPurchaseDiscountOffer('K', 2, 120));
+        OFFERS.computeIfAbsent('P', sku -> new ArrayList<>())
+                .add(new MultiPurchaseDiscountOffer('P', 5, 200));
+        OFFERS.computeIfAbsent('Q', sku -> new ArrayList<>())
+                .add(new MultiPurchaseDiscountOffer('Q', 3, 80));
+        OFFERS.computeIfAbsent('U', sku -> new ArrayList<>())
+                .add(new MultiPurchaseDiscountOffer('U', 4, 120));
+        OFFERS.computeIfAbsent('V', sku -> new ArrayList<>())
+                .add(new MultiPurchaseDiscountOffer('V', 3, 130));
+        OFFERS.computeIfAbsent('V', sku -> new ArrayList<>())
+                .add(new MultiPurchaseDiscountOffer('V', 2, 90));
+
+        // Add the group discounts
+        final Offer stxyzGroupOffer = new GroupItemDiscountOffer(List.of('Z', 'S', 'T', 'Y', 'X'), 3, 45);
+        OFFERS.computeIfAbsent('Z', sku -> new ArrayList<>()).add(stxyzGroupOffer);
+        OFFERS.computeIfAbsent('S', sku -> new ArrayList<>()).add(stxyzGroupOffer);
+        OFFERS.computeIfAbsent('T', sku -> new ArrayList<>()).add(stxyzGroupOffer);
+        OFFERS.computeIfAbsent('Y', sku -> new ArrayList<>()).add(stxyzGroupOffer);
+        OFFERS.computeIfAbsent('X', sku -> new ArrayList<>()).add(stxyzGroupOffer);
+    }
 
     public Integer checkout(String skus) {
 
@@ -126,3 +134,4 @@ public class CheckoutSolution {
     }
 
 }
+

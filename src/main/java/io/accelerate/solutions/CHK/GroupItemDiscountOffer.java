@@ -24,7 +24,7 @@ public class GroupItemDiscountOffer implements Offer {
         int toRemove = applications * this.count;
 
         for (final Character sku : this.skus) {
-            int currentCount = order.get(sku);
+            int currentCount = order.getOrDefault(sku, 0);
             int newCount = Math.max(0, currentCount - toRemove);
             toRemove -= currentCount;
 
@@ -37,3 +37,4 @@ public class GroupItemDiscountOffer implements Offer {
     }
 
 }
+
