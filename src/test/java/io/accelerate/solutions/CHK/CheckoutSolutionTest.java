@@ -29,11 +29,6 @@ public class CheckoutSolutionTest {
     }
 
     @Test
-    public void checkout_invalid_notFoundSKU() {
-        assertThat(checkout.checkout("Z"), equalTo(-1));
-    }
-
-    @Test
     public void checkout_invalid_lowercase() {
         assertThat(checkout.checkout("a"), equalTo(-1));
     }

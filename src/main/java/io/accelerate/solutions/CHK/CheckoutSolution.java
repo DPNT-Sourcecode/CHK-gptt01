@@ -42,14 +42,35 @@ public class CheckoutSolution {
                     new MultiPurchaseDiscountOffer('A', 3, 130)
             ),
             'B', List.of(
-                    order -> {
-                        order.put('B', Math.max(0, order.getOrDefault('B', 0) - order.getOrDefault('E', 0) / 2));
-                        return 0;
-                    },
+                    new GetSomethingFreeOffer('B', 'E', 2),
                     new MultiPurchaseDiscountOffer('B', 2, 45)
             ),
             'F', List.of(
                     new MultiPurchaseDiscountOffer('F', 3, 20)
+            ),
+            'H', List.of(
+                    new MultiPurchaseDiscountOffer('H', 10, 80),
+                    new MultiPurchaseDiscountOffer('H', 5, 45)
+            ),
+            'K', List.of(
+                    new MultiPurchaseDiscountOffer('K', 2, 150)
+            ),
+            'M', List.of(
+                    new GetSomethingFreeOffer('M', 'N', 3)
+            ),
+            'P', List.of(
+                    new MultiPurchaseDiscountOffer('P', 5, 200)
+            ),
+            'Q', List.of(
+                    new GetSomethingFreeOffer('Q', 'R', 3),
+                    new MultiPurchaseDiscountOffer('Q', 3, 80)
+            ),
+            'U', List.of(
+                    new MultiPurchaseDiscountOffer('U', 4, 120)
+            ),
+            'V', List.of(
+                    new MultiPurchaseDiscountOffer('V', 3, 130),
+                    new MultiPurchaseDiscountOffer('V', 2, 90)
             )
     );
 
@@ -105,5 +126,3 @@ public class CheckoutSolution {
     }
 
 }
-
-
