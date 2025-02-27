@@ -48,7 +48,7 @@ public class CheckoutSolutionTest {
 
     @Test
     public void checkout_valid_overOffer() {
-        assertThat(checkout.checkout("AAAAAAAABBBBBCD"), equalTo(515));
+        assertThat(checkout.checkout("AAAAAAAABBBBBCD"), equalTo(485));
     }
 
     @Test
