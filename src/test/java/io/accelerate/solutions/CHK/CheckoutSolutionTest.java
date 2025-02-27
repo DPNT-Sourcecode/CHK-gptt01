@@ -126,4 +126,16 @@ public class CheckoutSolutionTest {
         assertThat(checkout.checkout("EEEEB"), equalTo(160));
     }
 
+    // Group offer tests
+
+    @Test
+    public void checkout_offer_groupOffer() {
+        assertThat(checkout.checkout("STXYZ"), equalTo(82));
+    }
+
+    @Test
+    public void checkout_offer_groupOfferReversed() {
+        assertThat(checkout.checkout("ZYXYS"), equalTo(82));
+    }
+
 }
