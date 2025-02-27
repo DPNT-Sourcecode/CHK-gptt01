@@ -18,7 +18,7 @@ public class MultiPurchaseDiscountOffer implements Offer {
 
     @Override
     public int apply(final Map<Character, Integer> order) {
-        int startingCount = order.get(sku);
+        int startingCount = order.getOrDefault(sku, 0);
 
         int totalCost = (startingCount / this.count) * this.cost;
 
@@ -30,3 +30,4 @@ public class MultiPurchaseDiscountOffer implements Offer {
     }
 
 }
+
