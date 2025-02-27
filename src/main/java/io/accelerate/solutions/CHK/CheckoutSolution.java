@@ -20,6 +20,10 @@ public class CheckoutSolution {
                     new MultiPurchaseDiscountOffer('A', 3, 130)
             ),
             'B', List.of(
+                    order -> {
+                        order.put('B', Math.max(0, order.getOrDefault('B', 0) - order.getOrDefault('E', 0) / 2));
+                        return 0;
+                    },
                     new MultiPurchaseDiscountOffer('B', 2, 45)
             )
     );
