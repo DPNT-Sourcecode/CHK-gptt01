@@ -8,6 +8,7 @@ import static org.hamcrest.MatcherAssert.assertThat;
 import static org.hamcrest.Matchers.equalTo;
 
 public class SumSolutionTest {
+
     private SumSolution sum;
 
     @BeforeEach
@@ -30,3 +31,4 @@ public class SumSolutionTest {
         assertThat(sum.compute(100, 100), equalTo(200));
     }
 }
+
