@@ -31,4 +31,3 @@ public class SumSolutionTest {
         assertThat(sum.compute(100, 100), equalTo(200));
     }
 }
-
